@@ -1,24 +1,68 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from "react";
+import Todoitem from './Todoitem';
 
 function App() {
+  const [todo, setTodo] = useState("");
+
+  const [todoitems, setTodoitems] = useState([]);
+
+  function setitem(e) {
+   
+     setTodo(e.target.value);
+    
+  }
+
+  function updatetodo() {
+    setTodoitems((oldtodo) => {
+      return [...oldtodo, todo];
+    })
+    setTodo("");
+  }
+
+  function ondelete(id){
+    
+    
+    var newarray =  todoitems.filter(function(element,index){
+       return index!==id;
+    })
+    setTodoitems(newarray);
+   
+  
+
+  
+  }
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+
+      <div className="main_div">
+
+
+        <div className="center_div">
+          <h2>Todo App</h2>
+          <br />
+          <input type="text" placeholder="Add your todo" value={todo} onChange={setitem} />
+          <button onClick={updatetodo}><small>+</small></button>
+          <ol>
+            {
+              todoitems.map((todo,index)=>{
+                
+               return( <Todoitem todoval = {todo} ondelete = {ondelete} key = {index} id = {index}/>)
+              })
+            }
+          </ol>
+
+
+
+
+        </div>
+
+      </div>
+
+    </>
   );
 }
 
