@@ -1,3 +1,11 @@
+Project-description..
+
+A Simple todo application in reactjs where we can update todoitems and display all the todo items and can delete any todoitem. 
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
